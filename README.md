@@ -23,6 +23,7 @@ Cada arquivo `.c` representa um exercício isolado e funcional, com um comentár
 | `03_vetor_faixas_notas.c` | Vetor + `if/else if` encadeado: classificar notas por faixa de desempenho |
 | `04_funcao_soma_multiplicacao.c` | Função: parâmetros e retorno (`return`) com cálculos simples |
 | `05_funcao_void_media_aluno.c` | Função `void`: calcular e exibir resultado dentro da própria função |
+| `06_funcao_vetor_soma_maior_mostrar.c` | Função + vetor: somar, encontrar maior e exibir todos os valores via funções separadas |
 
 *(a tabela vai sendo atualizada conforme novos exercícios entram no repositório)*
 
