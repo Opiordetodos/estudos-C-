@@ -5,14 +5,14 @@ struct alunos{
     char nome[30];
     float nota;
 };
-int variosaluno(struct alunos sala[], int tam){
+int variosaluno(struct alunos sala[], int tam, int inicio){
     int count;
     int i; // para o for
     float notaverify;
     int qtdadded = 0;
     printf("insira o numero de alunos que deseja cadastrar: ");
     scanf("%d", &count);
-    for(i = 0; i < count && i < tam; i++){
+    for(i = inicio; i < inicio + count && i < inicio + tam; i++){
         printf("INSIRA O NOME DO ALUNO: ");
         scanf("%s", sala[i].nome);
         printf("INSIRA A NOTA DO ALUNO: ");
@@ -26,7 +26,6 @@ int variosaluno(struct alunos sala[], int tam){
             break;
         }
     }
-
     return qtdadded;
 }
 void relatorio(struct alunos sala[], int tam){
@@ -96,7 +95,7 @@ int main()
                         }
                         break;
                     case 2:
-                        adicionados = variosaluno(classe, tamanho - vectorused);
+                        adicionados = variosaluno(classe, tamanho - vectorused, vectorused);
                         vectorused = vectorused + adicionados;
                         break;
                     default:
