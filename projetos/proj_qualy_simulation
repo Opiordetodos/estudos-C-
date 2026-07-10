@@ -1,0 +1,486 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#define VETOR_TAMANHO 20
+#define BASE_TIME 88.0
+
+struct piloto{
+    char name[40];
+    int team; //team is int for select a team determinte the engine power(0 to 5 teams)
+    float fatest_time;
+    int active; // for Q1/Q2 and Q3;
+    int position; //final position in qualyfing
+    float habilidade; // all player have a diferent habilit (based on f1 2024 Season)
+    float aerodinmic; // all cars have a diferente aerodinmic (based on f1 2024 Season)
+};
+void _init_(struct piloto *p1[]) {
+    
+    // all base times = 88.0
+    
+    // 0 = Mercedes Engine
+    // 1 = Honda Engine  
+    // 2 = Ferrari Engine
+
+    strcpy(p1[0]->name, "Max Verstappen");
+    p1[0]->team = 1;        // Honda (Red Bull)
+    p1[0]->fatest_time = 0.0;
+    p1[0]->active = 1;
+    p1[0]->position = 0;
+    p1[0]->habilidade = 0.850;
+    p1[0]->aerodinmic = 0.600;
+
+    strcpy(p1[1]->name, "Sergio Perez");
+    p1[1]->team = 1;        // Honda (Red Bull)
+    p1[1]->fatest_time = 0.0;
+    p1[1]->active = 1;
+    p1[1]->position = 0;
+    p1[1]->habilidade = 0.450;
+    p1[1]->aerodinmic = 0.600;
+
+    strcpy(p1[2]->name, "Lewis Hamilton");
+    p1[2]->team = 0;        // Mercedes
+    p1[2]->fatest_time = 0.0;
+    p1[2]->active = 1;
+    p1[2]->position = 0;
+    p1[2]->habilidade = 0.770;
+    p1[2]->aerodinmic = 0.350;
+
+    strcpy(p1[3]->name, "George Russell");
+    p1[3]->team = 0;        // Mercedes
+    p1[3]->fatest_time = 0.0;
+    p1[3]->active = 1;
+    p1[3]->position = 0;
+    p1[3]->habilidade = 0.600;
+    p1[3]->aerodinmic = 0.350;
+
+    strcpy(p1[4]->name, "Charles Leclerc");
+    p1[4]->team = 2;        // Ferrari
+    p1[4]->fatest_time = 0.0;
+    p1[4]->active = 1;
+    p1[4]->position = 0;
+    p1[4]->habilidade = 0.720;
+    p1[4]->aerodinmic = 0.400;
+
+    strcpy(p1[5]->name, "Carlos Sainz");
+    p1[5]->team = 2;        // Ferrari
+    p1[5]->fatest_time = 0.0;
+    p1[5]->active = 1;
+    p1[5]->position = 0;
+    p1[5]->habilidade = 0.650;
+    p1[5]->aerodinmic = 0.400;
+
+    strcpy(p1[6]->name, "Lando Norris");
+    p1[6]->team = 0;        // Mercedes (McLaren)
+    p1[6]->fatest_time = 0.0;
+    p1[6]->active = 1;
+    p1[6]->position = 0;
+    p1[6]->habilidade = 0.700;
+    p1[6]->aerodinmic = 0.550;
+
+    strcpy(p1[7]->name, "Oscar Piastri");
+    p1[7]->team = 0;        // Mercedes (Mclaren)
+    p1[7]->fatest_time = 0.0;
+    p1[7]->active = 1;
+    p1[7]->position = 0;
+    p1[7]->habilidade = 0.580;
+    p1[7]->aerodinmic = 0.550;
+
+    strcpy(p1[8]->name, "Fernando Alonso");
+    p1[8]->team = 0;        // Mercedes (Aston Martin)
+    p1[8]->fatest_time = 0.0;
+    p1[8]->active = 1;
+    p1[8]->position = 0;
+    p1[8]->habilidade = 0.680;
+    p1[8]->aerodinmic = 0.300;
+
+    strcpy(p1[9]->name, "Lance Stroll");
+    p1[9]->team = 0;        // Mercedes (Aston martin)
+    p1[9]->fatest_time = 0.0;
+    p1[9]->active = 1;
+    p1[9]->position = 0;
+    p1[9]->habilidade = 0.350;
+    p1[9]->aerodinmic = 0.300;
+    
+    strcpy(p1[10]->name, "Esteban Ocon");
+    p1[10]->team = 3;       // Renault (Alpine)
+    p1[10]->fatest_time = 0.0;
+    p1[10]->active = 1;
+    p1[10]->position = 0;
+    p1[10]->habilidade = 0.420;
+    p1[10]->aerodinmic = 0.200;
+
+    strcpy(p1[11]->name, "Pierre Gasly");
+    p1[11]->team = 3;       // Renault (Alpine)
+    p1[11]->fatest_time = 0.0;
+    p1[11]->active = 1;
+    p1[11]->position = 0;
+    p1[11]->habilidade = 0.450;
+    p1[11]->aerodinmic = 0.200;
+
+    strcpy(p1[12]->name, "Nico Hulkenberg");
+    p1[12]->team = 2;       // Ferrari (Haas)
+    p1[12]->fatest_time = 0.0;
+    p1[12]->active = 1;
+    p1[12]->position = 0;
+    p1[12]->habilidade = 0.430;
+    p1[12]->aerodinmic = 0.180;
+
+    strcpy(p1[13]->name, "Kevin Magnussen");
+    p1[13]->team = 2;       // Ferrari (Haas)
+    p1[13]->fatest_time = 0.0;
+    p1[13]->active = 1;
+    p1[13]->position = 0;
+    p1[13]->habilidade = 0.350;
+    p1[13]->aerodinmic = 0.180;
+
+    strcpy(p1[14]->name, "Valtteri Bottas");
+    p1[14]->team = 2;       // Ferrari (Sauber)
+    p1[14]->fatest_time = 0.0;
+    p1[14]->active = 1;
+    p1[14]->position = 0;
+    p1[14]->habilidade = 0.420;
+    p1[14]->aerodinmic = 0.150;
+
+    strcpy(p1[15]->name, "Guanyu Zhou");
+    p1[15]->team = 2;       // Ferrari (sauber)
+    p1[15]->fatest_time = 0.0;
+    p1[15]->active = 1;
+    p1[15]->position = 0;
+    p1[15]->habilidade = 0.300;
+    p1[15]->aerodinmic = 0.150;
+
+
+    strcpy(p1[16]->name, "Yuki Tsunoda");
+    p1[16]->team = 1;       // Honda (RB)
+    p1[16]->fatest_time = 0.0;
+    p1[16]->active = 1;
+    p1[16]->position = 0;
+    p1[16]->habilidade = 0.480;
+    p1[16]->aerodinmic = 0.280;
+
+
+    strcpy(p1[17]->name, "Daniel Ricciardo");
+    p1[17]->team = 1;       // Honda (RB)
+    p1[17]->fatest_time = 0.0;
+    p1[17]->active = 1;
+    p1[17]->position = 0;
+    p1[17]->habilidade = 0.400;
+    p1[17]->aerodinmic = 0.280;
+
+
+    strcpy(p1[18]->name, "Alexander Albon");
+    p1[18]->team = 0;       // Mercedes (Williams)
+    p1[18]->fatest_time = 0.0;
+    p1[18]->active = 1;
+    p1[18]->position = 0;
+    p1[18]->habilidade = 0.450;
+    p1[18]->aerodinmic = 0.120;
+
+    strcpy(p1[19]->name, "Logan Sargeant");
+    p1[19]->team = 0;       // Mercedes (Williams)
+    p1[19]->fatest_time = 0.0;
+    p1[19]->active = 1;
+    p1[19]->position = 0;
+    p1[19]->habilidade = 0.100;
+    p1[19]->aerodinmic = 0.120;
+}
+// used this for the reset all times in Q1 for Q2 and the Q2 for Q3
+void reset_time_qualyfing(struct piloto *p1[], int tamanho, int isq1q2q3){
+    int i;
+    if(isq1q2q3 == 1){
+        for(i = 0; i < VETOR_TAMANHO; i++){
+            p1[i] -> fatest_time = BASE_TIME;
+        }
+    }else if(isq1q2q3 == 2){
+        for(i = 0; i < VETOR_TAMANHO - 5; i++){
+            p1[i] -> fatest_time = BASE_TIME;
+        }
+    }else if(isq1q2q3 == 3){
+        for(i = 0; i < VETOR_TAMANHO - 10; i++){
+            p1[i] -> fatest_time = BASE_TIME;
+        }
+    }
+
+}
+void qualyfing_organization(struct piloto *p1[], int tamanho, int q1q2q3){
+    struct piloto *temp;
+    int i;
+    int passada;
+    if(q1q2q3 == 1){
+        for(passada = 0; passada < tamanho - 1; passada++){
+            for(i = 0; i < tamanho - passada - 1; i++){
+                if(p1[i] -> fatest_time > p1[i + 1] -> fatest_time){
+                    temp = p1[i];
+                    p1[i] = p1[i + 1];
+                    p1[i + 1] = temp;
+                }
+            }
+        }
+    }else if(q1q2q3 == 2){
+        for(passada = 0; passada < tamanho - 6; passada++){
+            for(i = 0; i < tamanho - passada - 6; i++){
+                if(p1[i] -> fatest_time > p1[i + 1] -> fatest_time){
+                    temp = p1[i];
+                    p1[i] = p1[i + 1];
+                    p1[i + 1] = temp;
+                }
+            }
+        }
+    }else if(q1q2q3 == 3){
+        for(passada = 0; passada < tamanho - 11; passada++){
+            for(i = 0; i < tamanho - passada - 11; i++){
+                if(p1[i] -> fatest_time > p1[i + 1] -> fatest_time){
+                    temp = p1[i];
+                    p1[i] = p1[i + 1];
+                    p1[i + 1] = temp;
+                }
+            }
+        }
+    }
+    
+    for(i = 0; i < tamanho; i++){
+        p1[i] -> position = i + 1;
+    }
+    
+}
+void fatest_time_generator_q1(struct piloto *p1[]){
+    int i;
+    int laps;
+    int q1q2q3 = 1;
+    float laptime;
+    int maxlaps = 3;
+    char name[40];
+    
+    if(q1q2q3 == 3){
+        maxlaps = maxlaps - 1;
+    }
+    for(laps = 0; laps < maxlaps; laps++){
+        for(i = 0; i < VETOR_TAMANHO; i++){
+            switch(p1[i] -> team){
+                 case 0:
+                    laptime = BASE_TIME - ((float)rand() / RAND_MAX) * 3.0 - 0.3 - p1[i] -> aerodinmic - p1[i] -> habilidade;
+                    strcpy(name, p1[i] -> name);
+                    printf("Name: %s - TEMPO DE VOLTA: %.3f \n ", name,laptime);
+                    if(laptime < p1[i] -> fatest_time){
+                        p1[i] -> fatest_time = laptime;
+                    }
+                    break;
+                 case 1:
+                    laptime = BASE_TIME - ((float)rand() / RAND_MAX) * 3.0 - 0.5 - p1[i] -> aerodinmic - p1[i] -> habilidade;
+                    strcpy(name, p1[i] -> name);
+                    printf("Name: %s - TEMPO DE VOLTA: %.3f \n ", name,laptime);
+                    if(laptime < p1[i] -> fatest_time){
+                        p1[i] -> fatest_time = laptime;
+                    }
+                    break;
+                 case 2:
+                    laptime = BASE_TIME - ((float)rand() / RAND_MAX) * 3.0 - 0.4 - p1[i] -> aerodinmic - p1[i] -> habilidade;
+                    strcpy(name, p1[i] -> name);
+                    printf("Name: %s - TEMPO DE VOLTA: %.3f \n ", name,laptime);
+                    if(laptime < p1[i] -> fatest_time){
+                        p1[i] -> fatest_time = laptime;
+                    }
+                    break;
+                 case 3:
+                    laptime = BASE_TIME - ((float)rand() / RAND_MAX) * 3.0 - 0.2 - p1[i] -> aerodinmic - p1[i] -> habilidade;
+                    strcpy(name, p1[i] -> name);
+                    printf("Name: %s - TEMPO DE VOLTA: %.3f \n ", name,laptime);
+                    if(laptime < p1[i] -> fatest_time){
+                        p1[i] -> fatest_time = laptime;
+                    }
+                    break;
+                default:
+                    printf("ERROR INVALID ENGINE");
+                    break;
+            }
+        }
+    }
+}
+void fatest_time_generator_q3(struct piloto *p1[]){
+    int i;
+    int laps;
+    int q1q2q3 = 3;
+    float laptime;
+    int maxlaps = 3;
+    char name[40];
+    if(q1q2q3 == 3){
+        maxlaps = maxlaps - 1;
+    }
+    for(laps = 0; laps < maxlaps; laps++){
+        for(i = 0; i < VETOR_TAMANHO - 10; i++){
+            switch(p1[i] -> team){
+                 case 0:
+                    laptime = BASE_TIME - ((float)rand() / RAND_MAX) * 3.0 - 0.3 - p1[i] -> aerodinmic - p1[i] -> habilidade;
+                    strcpy(name, p1[i] -> name);
+                    printf("Name: %s - TEMPO DE VOLTA: %.3f \n ", name,laptime);
+                    if(laptime < p1[i] -> fatest_time){
+                        p1[i] -> fatest_time = laptime;
+                    }
+                    break;
+                 case 1:
+                    laptime = BASE_TIME - ((float)rand() / RAND_MAX) * 3.0 - 0.5 - p1[i] -> aerodinmic - p1[i] -> habilidade;
+                    strcpy(name, p1[i] -> name);
+                    printf("Name: %s - TEMPO DE VOLTA: %.3f \n ", name,laptime);
+                    if(laptime < p1[i] -> fatest_time){
+                        p1[i] -> fatest_time = laptime;
+                    }
+                    break;
+                 case 2:
+                    laptime = BASE_TIME - ((float)rand() / RAND_MAX) * 3.0 - 0.4 - p1[i] -> aerodinmic - p1[i] -> habilidade;
+                    strcpy(name, p1[i] -> name);
+                    printf("Name: %s - TEMPO DE VOLTA: %.3f \n ", name,laptime);
+                    if(laptime < p1[i] -> fatest_time){
+                        p1[i] -> fatest_time = laptime;
+                    }
+                    break;
+                 case 3:
+                    laptime = BASE_TIME - ((float)rand() / RAND_MAX) * 3.0 - 0.2 - p1[i] -> aerodinmic - p1[i] -> habilidade;
+                    strcpy(name, p1[i] -> name);
+                    printf("Name: %s - TEMPO DE VOLTA: %.3f \n ", name,laptime);
+                    if(laptime < p1[i] -> fatest_time){
+                        p1[i] -> fatest_time = laptime;
+                    }
+                    break;
+                default:
+                    printf("ERROR INVALID ENGINE");
+                    break;
+            }
+        }
+    }
+}
+void fatest_time_generator_q2(struct piloto *p1[]){
+    int i;
+    int laps;
+    int q1q2q3 = 1;
+    float laptime;
+    int maxlaps = 3;
+    char name[40];
+    if(q1q2q3 == 3){
+        maxlaps = maxlaps - 1;
+    }
+    for(laps = 0; laps < maxlaps; laps++){
+        for(i = 0; i < VETOR_TAMANHO - 5; i++){
+            switch(p1[i] -> team){
+                 case 0:
+                    laptime = BASE_TIME - ((float)rand() / RAND_MAX) * 3.0 - 0.3 - p1[i] -> aerodinmic - p1[i] -> habilidade;
+                    strcpy(name, p1[i] -> name);
+                    printf("Name: %s - TEMPO DE VOLTA: %.3f \n ", name,laptime);
+                    if(laptime < p1[i] -> fatest_time){
+                        p1[i] -> fatest_time = laptime;
+                    }
+                    break;
+                 case 1:
+                    laptime = BASE_TIME - ((float)rand() / RAND_MAX) * 3.0 - 0.5 - p1[i] -> aerodinmic - p1[i] -> habilidade;
+                    strcpy(name, p1[i] -> name);
+                    printf("Name: %s - TEMPO DE VOLTA: %.3f \n ", name,laptime);
+                    if(laptime < p1[i] -> fatest_time){
+                        p1[i] -> fatest_time = laptime;
+                    }
+                    break;
+                 case 2:
+                    laptime = BASE_TIME - ((float)rand() / RAND_MAX) * 3.0 - 0.4 - p1[i] -> aerodinmic - p1[i] -> habilidade;
+                    strcpy(name, p1[i] -> name);
+                    printf("Name: %s - TEMPO DE VOLTA: %.3f \n ", name,laptime);
+                    if(laptime < p1[i] -> fatest_time){
+                        p1[i] -> fatest_time = laptime;
+                    }
+                    break;
+                 case 3:
+                    laptime = BASE_TIME - ((float)rand() / RAND_MAX) * 3.0 - 0.2 - p1[i] -> aerodinmic - p1[i] -> habilidade;
+                    strcpy(name, p1[i] -> name);
+                    printf("Name: %s - TEMPO DE VOLTA: %.3f \n ", name,laptime);
+                    if(laptime < p1[i] -> fatest_time){
+                        p1[i] -> fatest_time = laptime;
+                    }
+                    break;
+                default:
+                    printf("ERROR INVALID ENGINE");
+                    break;
+            }
+        }
+    }
+}
+void elimined_qualy(struct piloto *p1[], int q1q2q3){
+    int qualyfingmoment = q1q2q3;
+    int i;
+    switch(qualyfingmoment){
+        case 1: //represents Q1
+            for(i = 0; i < VETOR_TAMANHO; i++){
+                if(p1[i] -> position <= 15){
+                    p1[i] -> active = 2; // passing for Q2
+                }
+            }
+            break;
+        case 2: 
+            for(i = 0; i < VETOR_TAMANHO; i++){
+                if(p1[i] -> position <= 10){
+                    p1[i] -> active = 3; // passing for Q2
+                }
+            }
+            break;
+        case 3: 
+            
+    }
+    
+}
+int main()
+{
+    srand(time(NULL));
+    struct piloto *grid[20];
+    int i;
+    int isq1orq2orq3 = 1;
+    char names[40];
+    for(int i = 0; i < 20; i++) {
+        grid[i] = malloc(sizeof(struct piloto));
+    }
+    printf("Q1 Iniciado - 18 minutos para o encerramento da sessão \n");
+    printf("Press enter to continue:");
+    char enter;
+    enter = getchar();
+    _init_(grid);
+    reset_time_qualyfing(grid, VETOR_TAMANHO, isq1orq2orq3);
+    fatest_time_generator_q1(grid);
+    qualyfing_organization(grid, VETOR_TAMANHO, isq1orq2orq3);
+    elimined_qualy(grid, isq1orq2orq3);
+    isq1orq2orq3++;
+    for(i = 0; i < VETOR_TAMANHO; i++){
+        strcpy(names, grid[i] -> name);
+        printf("%d° - %s - TIME: %.3f \n - ATIVO: Q%d \n", grid[i] -> position, names, grid[i] -> fatest_time, grid[i] -> active);
+    }
+    printf("TEMPOS REALIZADOS E Q1 ENCERRADO \n");
+    printf("Press enter to continue:");
+    enter = getchar();
+    printf("Q2 Iniciado - 15 minutos para o encerramento da sessão \n");
+    reset_time_qualyfing(grid, VETOR_TAMANHO, isq1orq2orq3);
+    fatest_time_generator_q2(grid);
+    qualyfing_organization(grid, VETOR_TAMANHO, isq1orq2orq3);
+    elimined_qualy(grid, isq1orq2orq3);
+    isq1orq2orq3++;
+    for(i = 0; i < VETOR_TAMANHO; i++){
+        strcpy(names, grid[i] -> name);
+        printf("%d° - %s - TIME: %.3f \n - ATIVO: Q%d \n", grid[i] -> position, names, grid[i] -> fatest_time, grid[i] -> active);
+    }
+    printf("TEMPOS REALIZADOS E Q2 ENCERRADO \n");
+    printf("Press enter to continue:");
+    enter = getchar();
+
+    printf("Q3 Iniciado - 10 minutos para o encerramento da sessão \n");
+    reset_time_qualyfing(grid, VETOR_TAMANHO, isq1orq2orq3);
+    fatest_time_generator_q3(grid);
+    qualyfing_organization(grid, VETOR_TAMANHO, isq1orq2orq3);
+    elimined_qualy(grid, isq1orq2orq3);
+    isq1orq2orq3++;
+    printf("TEMPOS REALIZADOS E Q3 ENCERRADO \n");
+    printf("ORDEM FINAL DO GRID DE LARGADA \n");
+    printf("Press enter to continue:");
+    enter = getchar();
+    
+    for(i = 0; i < VETOR_TAMANHO; i++){
+        strcpy(names, grid[i] -> name);
+        printf("%d° - %s - TIME: %.3f \n - ATIVO: Q%d \n", grid[i] -> position, names, grid[i] -> fatest_time, grid[i] -> active);
+    }
+    for(i = 0; i < VETOR_TAMANHO; i++)
+        free(grid[i]);
+    return 0;
+}
