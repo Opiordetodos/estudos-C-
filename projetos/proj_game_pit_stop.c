@@ -30,6 +30,7 @@ void pilotandteam(struct pilot *player){
 void reset(struct pilot *player){
     printf("Insira o Composta de pneu da sua largada \n MACIO - S \n MEDIO - M \n DURO - H \n");
     scanf(" %c", &player -> composto_atual);
+
     player -> volta_atual = 0;
     player -> voltas_no_pneu = 0;
     player -> tempo_total = 0;
@@ -37,14 +38,15 @@ void reset(struct pilot *player){
     player -> trocar_composto = 0;
     player -> used_soft = 0;
     player -> used_medium = 0;
-	player -> used_hard = 0;
-	if(player -> composto_atual == 'S'){
-	    player -> used_soft++;
-	}else if(player -> composto_atual == 'M'){
-	    player -> used_medium++;
-	}else if(player -> composto_atual == 'H'){
-	    player -> used_hard++;
-	}
+    player -> used_hard = 0;
+
+    if(player -> composto_atual == 'S' || player -> composto_atual == 's'){
+        player -> used_soft++;
+    }else if(player -> composto_atual == 'M' || player -> composto_atual == 'm'){
+        player -> used_medium++;
+    }else if(player -> composto_atual == 'H' || player -> composto_atual == 'h'){
+        player -> used_hard++;
+    }
 }
 // using function degradacao for calculing the degradecion per lap
 void degradacao(struct pilot *player) {
@@ -55,7 +57,7 @@ void degradacao(struct pilot *player) {
 	float soft_tyre = 88.0;
 	float medium_tyre = 92.0;
 	float hard_tyre = 96.0;
-	if(tyres == 'S') {
+	if(tyres == 'S' || tyres == 's') {
 		player -> desgaste = (player -> voltas_no_pneu / 15) * 100;
 		player -> voltas_no_pneu++;
 		if(soft_life - player -> voltas_no_pneu < 3 && soft_life - player -> voltas_no_pneu >=0){ //inverter os valores do IF
@@ -68,7 +70,7 @@ void degradacao(struct pilot *player) {
 		    player -> tempo_volta = soft_tyre + (player -> voltas_no_pneu * DEGRADACAO);
 		    printf("PILOTO: MEUS PNEUS ESTÃO OKs AINDA \n");
 		}
-	} else if(tyres == 'M') {
+	} else if(tyres == 'M' || tyres == 'm') {
 		
 		player -> desgaste = (player -> voltas_no_pneu / 20) * 100;
 		player -> voltas_no_pneu++;
@@ -82,7 +84,7 @@ void degradacao(struct pilot *player) {
 		    player -> tempo_volta = medium_tyre + (player -> voltas_no_pneu * DEGRADACAO);
 		    printf("PILOTO: MEUS PNEUS ESTÃO OKs AINDA \n");
 		}
-	} else if(tyres == 'H'){
+	} else if(tyres == 'H'|| tyres == 'h'){
 		player -> desgaste = (player -> voltas_no_pneu / 25) * 100;
 		player -> voltas_no_pneu++;
 		if(hard_life - player -> voltas_no_pneu < 3 && hard_life -  player -> voltas_no_pneu >= 0){
@@ -110,11 +112,11 @@ void pitting(struct pilot *player){
     scanf(" %c", &composto_novo);
     player -> tempo_total = player -> tempo_total + TEMPO_DE_PIT;
     player -> numero_de_pits++;
-    if(composto_novo =='S'){
+    if(composto_novo =='S' || composto_novo == 's'){
         player -> used_soft++;
-    }else if(composto_novo == 'M'){
+    }else if(composto_novo == 'M' || composto_novo == 'm'){
         player -> used_medium++;
-    }else if(composto_novo == 'H'){
+    }else if(composto_novo == 'H'|| composto_novo == 'h'){
         player -> used_hard++;
     }
     if(composto_novo == player -> composto_atual){
